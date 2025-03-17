@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("./partials/head") %>
+    <style>
+        .anc{
+            color: rgb(11, 147, 210);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .anc:hover {
+            color: rgb(122, 122, 225);
+            text-decoration: underline;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/nav") %>
+
+    <div style="margin-top: 30px">
+        <% if (locals.urls) { %>
+        <table class="table">
+          <thead>
+            <tr>
+            <th scope="col" >S. No</th>
+            <th scope="col" >ShortID</th>
+            <th scope="col" >Redirect</th>
+            <th scope="col" >Clicks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% urls.forEach((url, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><a class = "anc" href="http://localhost:8001/url/<%= url.shortId %>"><%= url.shortId %></a></td>
+              <td><%= url.redirectURL %></td>
+              <td><%= url.visitHistory.length %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        <% } %>
+      </div>
+  
+
+
+    <%- include("./partials/scripts") %>
+</body>
+</html>

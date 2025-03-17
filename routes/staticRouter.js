@@ -3,13 +3,22 @@ const URL = require("../models/url");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/myurls", async (req, res) => {
   if (!req.user) return res.redirect("/login");
   const allurls = await URL.find({ createdBy: req.user._id });
-  return res.render("home", {
+  return res.render("myurls", {
     urls: allurls,
+    user: req.user
   });
 });
+
+router.get("/", (req, res) => {
+  if (!req.user) return res.redirect("/login");
+  return res.render("home", {
+    user: req.user
+  });
+})
+
 
 router.get("/signup", (req, res) => {
   return res.render("signup");
