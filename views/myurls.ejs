@@ -29,15 +29,17 @@
             <th scope="col" >ShortID</th>
             <th scope="col" >Redirect</th>
             <th scope="col" >Clicks</th>
+            <th scope="col" >delete</th>
             </tr>
           </thead>
           <tbody>
             <% urls.forEach((url, index) => { %>
             <tr>
               <td><%= index + 1 %></td>
-              <td><a class = "anc" href="http://localhost:8001/url/<%= url.shortId %>"><%= url.shortId %></a></td>
+              <td><a class = "anc" href="http://localhost:<%= locals.PORT %>/url/<%= url.shortId %>"><%= url.shortId %></a></td>
               <td><%= url.redirectURL %></td>
               <td><%= url.visitHistory.length %></td>
+              <td><button class="btn btn-danger" onclick="deleteItem('<%= url.shortId %>')">Delete</button></td>
             </tr>
             <% }) %>
           </tbody>
@@ -48,5 +50,22 @@
 
 
     <%- include("./partials/scripts") %>
+    <script>
+      function deleteItem(id) {
+        fetch(`url/delete/${id}`, { 
+          method: 'DELETE' 
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("Item deleted successfully");
+            location.reload();
+          } else {
+            alert("Error deleting item");
+          }
+        })
+        .catch(error => console.error("Error:", error));
+      }
+    </script>
 </body>
 </html>

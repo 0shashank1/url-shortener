@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const URL = require("../models/url");
 
@@ -8,14 +9,16 @@ router.get("/myurls", async (req, res) => {
   const allurls = await URL.find({ createdBy: req.user._id });
   return res.render("myurls", {
     urls: allurls,
-    user: req.user
+    user: req.user,
+    PORT: process.env.PORT
   });
 });
 
 router.get("/", (req, res) => {
   if (!req.user) return res.redirect("/login");
   return res.render("home", {
-    user: req.user
+    user: req.user,
+    PORT: process.env.PORT
   });
 })
 

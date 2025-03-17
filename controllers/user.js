@@ -1,7 +1,8 @@
 const User = require("../models/user");
 
 async function handleUserSignup(req, res) {
-  const { name, email, password } = req.body;
+  let { name, email, password } = req.body;
+  email = email.toLowerCase();
   await User.create({
     name,
     email,
@@ -11,7 +12,8 @@ async function handleUserSignup(req, res) {
 }
 
 async function handleUserLogin(req, res) {
-  const { email, password } = req.body;
+  let { email, password } = req.body;
+  email = email.toLowerCase();
   try {
     const token = await User.matchPasswordAndGenerateToken(email, password);
 

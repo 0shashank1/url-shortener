@@ -10,13 +10,14 @@
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.7",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.0",
-    "nanoid": "^5.0.9",
-    "nodemon": "^3.1.9",
-    "shortid": "^2.2.17",
-    "uuid": "^11.0.5"
+    "shortid": "^2.2.17"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }

@@ -28,10 +28,14 @@
         </div>
         
       </form>
-    </div>
+    </div>                                                
     <% if (locals.id) { %>
       <h3 class="mt-4 centered">Result:</h3>
-      <p id="result" class="alert alert-secondary centered">URL Generated:  <a class = "anc" href="http://localhost:8001/url/">http://localhost:8001/url/<%= id %></a></p>
+      <p id="result" class="alert alert-secondary centered">URL Generated:  
+        <a class = "anc" href="http://localhost:<%= locals.PORT %>/url/<%= locals.id %>">
+          http://localhost:<%= locals.PORT %>/url/<%= locals.id %>
+        </a>
+      </p>
       <% } %>
 
   
