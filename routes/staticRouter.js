@@ -11,7 +11,7 @@ router.get("/myurls", async (req, res) => {
   return res.render("myurls", {
     urls: allurls,
     name: req.cookies.name,
-    PORT: process.env.PORT
+    base_url: process.env.base_url
   });
 });
 
@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   if (!req.user) return res.redirect("/login");
   return res.render("home", {
     name: req.cookies.name,
-    PORT: process.env.PORT
+  //  PORT: process.env.PORT
   });
 })
 

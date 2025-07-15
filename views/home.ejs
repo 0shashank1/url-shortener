@@ -38,8 +38,8 @@
     <% if (locals.id) { %>
       <div class = "padd">
           <p id="result" class="alert alert-secondary centered">URL Generated:  
-            <a class = "anc" href="http://localhost:<%= locals.PORT %>/url/<%= locals.id %>">
-              https://url-shortener-y82d.onrender.com//url/<%= locals.id %>
+            <a class = "anc" href="<%= locals.base_url %>/url/<%= locals.id %>">
+              <%= locals.base_url %>/url/<%= locals.id %>
             </a>
           </p>
       </div>
