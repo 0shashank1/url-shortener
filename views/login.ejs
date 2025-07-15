@@ -59,6 +59,11 @@
     </div>
     
     <%- include('./partials/scripts') %>
+    <script>
+  window.addEventListener("load", function () {
+    document.getElementById("yourFormId")?.reset();
+  });
+    </script>
   
 
 

@@ -22,7 +22,7 @@ async function handleGenerateNewShortURL(req, res) {
   if(isthere){
     return res.render("home", {
       id: isthere.shortId,
-      user: req.user,
+      name: req.cookies.name,
       PORT: process.env.PORT
 
     });
@@ -38,7 +38,7 @@ async function handleGenerateNewShortURL(req, res) {
 
   return res.render("home", {
     id: shortID,
-    user: req.user,
+    name: req.cookies.name,
     PORT: process.env.PORT
 
   });

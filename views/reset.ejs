@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Reset Password</h4>
+          </div>
+          <div class="card-body">
+
+            <form action="/reset" method="POST" id="resetForm" autocomplete="off">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                  placeholder="you@example.com"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Send Reset Link
+              </button>
+              <% if (locals.message) { %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <%= message %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <% } %>
+
+                <% if (locals.error) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <% } %>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    
+    <%- include('./partials/scripts') %>
+ 
+  
+
+
+  </body>
+</html>

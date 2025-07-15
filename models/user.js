@@ -43,6 +43,18 @@ userSchema.pre("save", function (next) {
   next();
 });
 
+userSchema.static("changePassword", async function (email, newPassword) {
+  const user = await this.findOne({ email });
+  if (!user) throw new Error("User not found");
+
+  user.password = newPassword;          
+  await user.save();                    
+
+  return "Password updated successfully";
+});
+
+
+
 userSchema.static(
   "matchPasswordAndGenerateToken",
   async function (email, password) {
