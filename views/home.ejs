@@ -9,9 +9,9 @@
       }
       .padd{
         padding: 20px;
-        display: flex;
+        /* display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: center; */
       }
     </style>
     <meta charset="UTF-8" />
@@ -38,12 +38,21 @@
     <% if (locals.id) { %>
       <div class = "padd">
           <p id="result" class="alert alert-secondary centered">URL Generated:  
-            <a class = "anc" href="<%= locals.base_url %>/url/<%= locals.id %>">
-              <%= locals.base_url %>/url/<%= locals.id %>
+            <a class = "anc" id = "ress" href="<%= locals.base_url %>/url/<%= locals.id %>">
+              <%= base_url %>/url/<%= locals.id %>
             </a>
+                  <!-- Copy button -->
+          <button class="btn btn-sm btn-outline-primary ms-3" onclick="copyUrl()">Copy</button>
+
+          <!-- Success message -->
+          <span id="copyMsg" class="text-success ms-2" style="display: none;">Copied!</span>
           </p>
       </div>
+    </div>
       <% } %>
+
+
+      
 
       <% if (locals.error) { %>
       <div class = "padd">
@@ -55,5 +64,22 @@
 
   
     <%- include('./partials/scripts') %>
+
+
+
+    <div id="copySuccess" class="text-success mt-2" style="display: none;">Copied!</div>
+
+<script>
+  function copyUrl() {
+    let url =  document.getElementById("ress").textContent;
+    navigator.clipboard.writeText(url).then(() => {
+      const msg = document.getElementById("copyMsg");
+      msg.style.display = "inline";
+      setTimeout(() => msg.style.display = "none", 2000);
+    }).catch(() => {
+      alert("Failed to copy URL");
+    });
+  }
+</script>
   </body>
 </html>

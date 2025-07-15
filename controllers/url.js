@@ -12,7 +12,8 @@ async function handleGenerateNewShortURL(req, res) {
   if(!url.startsWith("https://")){
     return res.render("home",{
       user: req.user,
-      error: "invalid URL"
+      error: "invalid URL",
+      base_url: process.env.base_url
     });
   }
   const isthere = await URL.findOne({ 

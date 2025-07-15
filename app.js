@@ -46,15 +46,16 @@ app.get("/url/:shortId", async (req, res) => {
   const url = entry.redirectURL;
   const isvalid = url.startsWith("https://");
   if(isvalid){
-      res.redirect(entry.redirectURL);
+      return res.redirect(entry.redirectURL);
   }
-  else{
-    return res.render("home", {
-    user: req.user,
-    PORT: process.env.PORT,
-    err: "invalid URL"
-    });
-  }
+    else{
+      return res.render("home", {
+      user: req.user,
+      PORT: process.env.PORT,
+      err: "invalid URL"
+      });
+    }
+
 });
 
 app.listen(PORT, () => console.log(`Server Started at PORT:${PORT}`));
