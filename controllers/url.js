@@ -4,7 +4,17 @@ const URL = require("../models/url");
 
 async function handleGenerateNewShortURL(req, res) {
   const body = req.body;
-  if (!body.url) return res.status(400).json({ error: "url is required" });
+  if (!body.url) return res.render("home",{
+    user: req.user,
+    error: "URL required"
+  });
+  const url = body.url;
+  if(!url.startsWith("https://")){
+    return res.render("home",{
+      user: req.user,
+      error: "invalid URL"
+    });
+  }
   const isthere = await URL.findOne({ 
     createdBy: req.user._id, 
     redirectURL:  body.url,

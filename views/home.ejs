@@ -7,6 +7,12 @@
         color: red;
         text-decoration: none;
       }
+      .padd{
+        padding: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,12 +36,21 @@
       </form>
     </div>                                                
     <% if (locals.id) { %>
-      <h3 class="mt-4 centered">Result:</h3>
-      <p id="result" class="alert alert-secondary centered">URL Generated:  
-        <a class = "anc" href="http://localhost:<%= locals.PORT %>/url/<%= locals.id %>">
-          http://localhost:<%= locals.PORT %>/url/<%= locals.id %>
-        </a>
-      </p>
+      <div class = "padd">
+          <p id="result" class="alert alert-secondary centered">URL Generated:  
+            <a class = "anc" href="http://localhost:<%= locals.PORT %>/url/<%= locals.id %>">
+              http://localhost:<%= locals.PORT %>/url/<%= locals.id %>
+            </a>
+          </p>
+      </div>
+      <% } %>
+
+      <% if (locals.error) { %>
+      <div class = "padd">
+          <p id="result" class="alert alert-secondary centered">ERROR:  
+            <%= locals.error %>
+          </p>
+      </div>
       <% } %>
 
   

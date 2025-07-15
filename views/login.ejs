@@ -3,10 +3,7 @@
   <head>
     <%- include('./partials/head') %>
     <style>
-      .hii{
-        border: 5px solid pink;
-      }
-      #aa{
+      .aa{
         text-decoration: none;
       }
     </style>
@@ -24,7 +21,7 @@
               <div class="card bg-dark text-white" style="border-radius: 1rem;">
                 <div class="card-body p-5 text-center">
       
-                  <div class="mb-md-5 mt-md-4 pb-5">
+                  <div class=" mt-md-4 pb-5">
                     <form action="/user/login" method="post">
                     <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                     <p class="text-white-50 mb-5">Please enter your login and password!</p>
@@ -43,7 +40,14 @@
                   </form>
                 </div>
                 <hr>
-                <a href="/signup" id="aa">dont have an account</a>
+                <% if (typeof error !== 'undefined') { %>
+                  <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                  </div>
+                <% } %>
+                <a href="/signup" class="aa">dont have an account</a>
+                <br>
+                <a href="/forgot" class = "aa">forgot password</a>
     
       
                 </div>
