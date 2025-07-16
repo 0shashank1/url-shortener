@@ -23,13 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/url", restrictToLoggedinUserOnly, urlRoute);
-app.use("/user", userRoute);
-app.use("/", checkAuth, staticRoute);
-
-
-//everyone can access becasuse this route redirects
-app.get("/url/:shortId", async (req, res) => {
+app.get("/url/:shortId([^/]+)", async (req, res) => {
   const shortId = req.params.shortId;
   const entry = await URL.findOneAndUpdate(
     {
@@ -43,27 +37,16 @@ app.get("/url/:shortId", async (req, res) => {
       },
     }
   );
-  return res.redirect(entry.redirectURL);
-  // const url = entry.redirectURL;
-  //const isvalid = url.startsWith("https://");
-  // if(isvalid){
-  //     return res.redirect(entry.redirectURL);
-  // }
-    // else{
-    //   return res.render("home", {
-    //   user: req.user,
-    //   PORT: process.env.PORT,
-    //   err: "invalid URL"
-    //   });
-    // }
-
-      return res.render("home", {
-      user: req.user,
-      PORT: process.env.PORT,
-      err: "invalid URL"
-      });
+  if(entry){
+    return res.redirect(entry.redirectURL);
+  }
+  return res.redirect("/login");
 
 });
+
+app.use("/url", restrictToLoggedinUserOnly, urlRoute);
+app.use("/user", userRoute);
+app.use("/", checkAuth, staticRoute);
 
 app.listen(PORT, () => console.log(`Server Started at PORT:${PORT}`));
 

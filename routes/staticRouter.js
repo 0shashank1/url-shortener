@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   if (!req.user) return res.redirect("/login");
   return res.render("home", {
     name: req.cookies.name,
-  //  PORT: process.env.PORT
+    base_url: process.env.base_url
   });
 })
 
