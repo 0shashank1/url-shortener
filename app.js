@@ -43,18 +43,25 @@ app.get("/url/:shortId", async (req, res) => {
       },
     }
   );
-  const url = entry.redirectURL;
-  const isvalid = url.startsWith("https://");
-  if(isvalid){
-      return res.redirect(entry.redirectURL);
-  }
-    else{
+  return res.redirect(entry.redirectURL);
+  // const url = entry.redirectURL;
+  //const isvalid = url.startsWith("https://");
+  // if(isvalid){
+  //     return res.redirect(entry.redirectURL);
+  // }
+    // else{
+    //   return res.render("home", {
+    //   user: req.user,
+    //   PORT: process.env.PORT,
+    //   err: "invalid URL"
+    //   });
+    // }
+
       return res.render("home", {
       user: req.user,
       PORT: process.env.PORT,
       err: "invalid URL"
       });
-    }
 
 });
 
