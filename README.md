@@ -55,7 +55,6 @@ npm run dev
 | `GET`  | `/:shortCode`   | Redirects to the original long URL, increments visit count |
 
 
-```
 ##  Live Demo
 🟢 [Click here to try the live URL Shortener](https://url-shortener-y82d.onrender.com)
 
